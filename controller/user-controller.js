@@ -1,13 +1,16 @@
 
-//const User = require('./database/models/user.js');
-
-import User from "../database/models/user.js";
 import bcrypt from 'bcrypt'
-const registerUser = async (req, res) => {
+import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+import User from "../database/models/user.js";
+import Token from '../database/models/token.js'
+dotenv.config();
+export const registerUser = async (req, res) => {
     try {
 
         const hashpassword = await bcrypt.hash(req.body.password, 10);
         const userData = {
+            name: req.body.name,
             userName: req.body.userName,
             password: hashpassword
         };
@@ -22,4 +25,41 @@ const registerUser = async (req, res) => {
     }
 }
 
-export default registerUser;
+export const loginUser = async (req, res) => {
+    try {
+        //console.log('Start');
+        let user = await User.findOne({ userName: req.body.userName });
+        //console.log(user);
+        if (!user) {
+            return res.status(200).json({ msg: "Invalid Credentials" })
+        }
+        let match = await bcrypt.compare(req.body.password, user.password);
+        //console.log(match);
+        if (match) {
+            //console.log('inside match');
+
+
+            let accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_KEY, { expiresIn: '15m' });
+            let refreshToken = jwt.sign(user.toJSON(), process.env.REFRESH_SECRET_KEY);
+            const token = new Token({
+                token: refreshToken
+            })
+            await token.save();
+
+            return res.status(200).json({ accessToken, refreshToken, userName: user.userName, name: user.name });
+        } else {
+            return res.status(200).json({ msg: 'Incorrect password' });
+        }
+
+
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({ msg: 'Internal Server Error' });
+    }
+}
+
+
+
+
+
