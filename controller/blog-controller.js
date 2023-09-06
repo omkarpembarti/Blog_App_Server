@@ -12,5 +12,13 @@ export const publishBlog = async (req, res) => {
         console.log(e);
         return res.status(500).json({ 'msg': 'Server Error' });
     }
+}
+
+export const getAllBlogs = async (req, res) => {
+    try {
+        const blogs = await Blog.find({});
+        return res.status(200).json(blogs);
+    } catch (e) { console.log(e) }
+
 
 }
