@@ -3,12 +3,14 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 import User from "../database/models/user.js";
+
 import Token from '../database/models/token.js'
 dotenv.config();
 export const registerUser = async (req, res) => {
     try {
 
         const hashpassword = await bcrypt.hash(req.body.password, 10);
+        console.log(hashpassword);
         const userData = {
             name: req.body.name,
             userName: req.body.userName,
