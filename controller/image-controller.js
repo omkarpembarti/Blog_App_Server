@@ -28,7 +28,7 @@ const url = 'http://localhost:6000';
 let gfs, gridfsBucket;
 const conn = mongoose.connection;
 conn.once('open', () => {
-    console.log('I am opened');
+
     gridfsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
         bucketName: 'fs'
     });

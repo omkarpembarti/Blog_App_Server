@@ -8,8 +8,8 @@ dotenv.config();
 const userName = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 
-console.log('UserName-->' + userName);
-console.log('Password-->' + password);
+// console.log('UserName-->' + userName);
+// console.log('Password-->' + password);
 
 
 
