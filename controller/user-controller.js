@@ -10,7 +10,7 @@ export const registerUser = async (req, res) => {
     try {
 
         const hashpassword = await bcrypt.hash(req.body.password, 10);
-        console.log(hashpassword);
+
         const userData = {
             name: req.body.name,
             userName: req.body.userName,
@@ -19,7 +19,7 @@ export const registerUser = async (req, res) => {
         const newUser = new User(userData);
         await newUser.save();
 
-        res.status(200).json({ msg: 'Registered Successfully' });
+        res.status(200).json({ 'success': true, 'msg': 'Registered Successfully' });
     }
     catch (e) {
         console.log(e);

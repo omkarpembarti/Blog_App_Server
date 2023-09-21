@@ -5,7 +5,7 @@ export const addComment = async (req, res) => {
     try {
         const comment = await new Comment(req.body);
         comment.save();
-        return res.status(200).json({ 'success': true, 'msg': 'Comment Successfully Added' });
+        return res.status(200).json({ 'success': true, 'msg': 'Comment Successfully Added', 'newComment': comment });
 
     } catch (e) {
 
