@@ -18,6 +18,22 @@ export const publishBlog = async (req, res) => {
     }
 }
 
+
+export const updateBlog = async (req, res) => {
+    try {
+        const blogId = req.body._id;
+        const blog = await Blog.findById(blogId);
+
+        if (!blog)
+            return res.status(404).json({ 'msg': 'Post not found' });
+
+        const response = await Blog.findByIdAndUpdate({ _id: blogId }, req.body);
+
+        res.status(200).json({ 'success': true, 'msg': 'Updated Successfully', 'updatedBlog': response });
+    }
+    catch (e) { console.log(e); }
+}
+
 export const getAllBlogs = async (req, res) => {
     try {
         const blogs = await Blog.find({});

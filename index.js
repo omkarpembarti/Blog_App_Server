@@ -1,5 +1,3 @@
-
-
 import express from 'express';
 import dotenv from 'dotenv';
 import connection from './database/db.js';
@@ -13,7 +11,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger);
 
 app.listen(6000, () => {
@@ -22,6 +20,4 @@ app.listen(6000, () => {
 connection(process.env.DB_USERNAME, process.env.DB_password);
 // INIT ENDS
 
-
 app.use('/', router);
-

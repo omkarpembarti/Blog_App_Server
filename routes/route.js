@@ -3,7 +3,7 @@ import { loginUser, registerUser } from '../controller/user-controller.js'
 import { getImage, uploadImage } from '../controller/image-controller.js';
 import upload from '../utils/uploads.js';
 import { authToken } from '../controller/jwt-controller.js';
-import { deleteBlog, getAllBlogs, getMyBlogs, publishBlog } from '../controller/blog-controller.js'
+import { deleteBlog, getAllBlogs, getMyBlogs, publishBlog, updateBlog } from '../controller/blog-controller.js'
 import { addComment, getComments } from '../controller/comment-controller.js';
 
 const router = express.Router();
@@ -17,7 +17,7 @@ router.post('/blog/publishImage', upload.single('file'), uploadImage);
 router.get('/image/:filename', getImage);
 router.get('/allBlogs', authToken, getAllBlogs);
 router.get('/myBlogs/:userName', authToken, getMyBlogs);
-
+router.put('/updateBlog', authToken, updateBlog);
 router.get('/deleteBlog/:id', authToken, deleteBlog);
 
 router.post('/comment/new', authToken, addComment);
