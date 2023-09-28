@@ -13,7 +13,9 @@ app.use(cors());
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger);
-
+console.log('process.env.PORT-->',process.env.PORT);
+console.log('process.env.DB_USERNAME-->',process.env.DB_USERNAME);
+console.log('process.env.DB_password-->',process.env.DB_password);
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {
     console.log("Express Connected")
