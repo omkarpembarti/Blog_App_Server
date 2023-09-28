@@ -14,7 +14,8 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger);
 
-app.listen(6000, () => {
+const PORT = 7000;
+app.listen(PORT, () => {
     console.log("Express Connected")
 })
 connection(process.env.DB_USERNAME, process.env.DB_password);

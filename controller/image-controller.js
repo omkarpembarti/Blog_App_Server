@@ -21,7 +21,7 @@ dotenv.config();
 
 //const url = process.env.SERVER_URL;
 //Temp fix
-const url = 'http://localhost:6000';
+const url = '';
 
 
 
