@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logger);
 console.log('process.env.PORT-->',process.env.PORT);
 console.log('process.env.DB_USERNAME-->',process.env.DB_USERNAME);
-console.log('process.env.DB_password-->',process.env.DB_password);
+console.log('process.env.DB_password-->',process.env.DB_PASSWORD);
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {
     console.log("Express Connected")
