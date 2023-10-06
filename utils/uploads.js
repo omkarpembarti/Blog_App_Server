@@ -8,17 +8,11 @@ dotenv.config();
 const userName = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 
-// console.log('UserName-->' + userName);
-// console.log('Password-->' + password);
-
-
 
 const storage = new GridFsStorage({
     url: `mongodb+srv://${userName}:${password}@tenet.mbed4r8.mongodb.net/?retryWrites=true&w=majority`,
     options: { useNewUrlParser: true },
     file: (request, file) => {
-        console.log('inside middleware');
-        console.log(file);
         //Allowed File type
         const match = ["image/png", "image/jpg"];
 
