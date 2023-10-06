@@ -29,16 +29,12 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
     try {
-        //console.log('Start');
         let user = await User.findOne({ userName: req.body.userName });
-        //console.log(user);
         if (!user) {
             return res.status(200).json({ msg: "Invalid Credentials" })
         }
         let match = await bcrypt.compare(req.body.password, user.password);
-        //console.log(match);
         if (match) {
-            //console.log('inside match');
 
 
             let accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_SECRET_KEY, { expiresIn: '15m' });

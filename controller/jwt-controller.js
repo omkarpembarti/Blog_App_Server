@@ -13,7 +13,6 @@ export const authToken = async (req, res, next) => {
             return res.status(401).json({ 'msg': 'Access token missing' });
 
         const decodeValue = await admin.auth().verifyIdToken(token)
-        //console.log('decodeValue', decodeValue);
         if (decodeValue) {
             req.user = decodeValue.name;
             return next();

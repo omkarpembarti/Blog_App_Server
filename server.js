@@ -2,9 +2,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import connection from './database/db.js';
 import router from './routes/route.js';
+import blogsRouter from './routes/blogsRoute.js';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import { logger } from './middleware/logger.js';
+
 
 // INIT STARTS
 dotenv.config();
@@ -21,3 +23,4 @@ connection(process.env.DB_USERNAME, process.env.DB_PASSWORD);
 // INIT ENDS
 
 app.use('/', router);
+app.use('/blogs', blogsRouter);

@@ -4,7 +4,7 @@ import Comment from '../database/models/comment.js';
 export const publishBlog = async (req, res) => {
     try {
         const blog = await new Blog(req.body);
-        console.log(blog);
+
         blog.save();
         return res.status(200).json({
             'success': true,
@@ -60,11 +60,10 @@ export const deleteBlog = async (req, res) => {
         const blog = await Blog.findById(id);
         await blog.deleteOne();
 
-        res.status(200).json(blog);
+        res.status(200).json({ 'success': true, 'msg': 'Deleted Successfully' });
         //Delete the corressponding comments also.
 
         const comments = await Comment.deleteMany({ 'postID': id });
-        console.log(comments);
     }
     catch (e) {
         console.log(e);

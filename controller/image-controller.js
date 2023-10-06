@@ -50,12 +50,10 @@ export const getImage = async (request, response) => {
 
 export const uploadImage = (req, res) => {
     try {
-        // console.clear();
-        // console.log(req);
         if (!req.file) {
             res.status(404).json({ msg: 'File Not Found' });
         } else {
-            const imageURL = `${url}/image/${req.file.filename}`;
+            const imageURL = `${url}/blogs/image/${req.file.filename}`;
             res.status(200).json(imageURL);
         }
     }
